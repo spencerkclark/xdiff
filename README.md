@@ -1,6 +1,8 @@
 xdiff
 =====
 
+[![Build Status](https://travis-ci.org/spencerkclark/xdiff.svg?branch=master)](https://travis-ci.org/spencerkclark/xdiff)
+
 Generic differentiation routines on the sphere.  These make no assumptions
 about the grid type (e.g. Arakawa C, etc.) or advection scheme used.  Instead
 these are basic second-order differences, assuming grid coordinates are at
@@ -53,11 +55,21 @@ df_dlat = d_dlat(f, lon_dim='longitude', lat_dim='latitude')
 ```
 
 If you found yourself doing this a lot, you could reset the global default
-options.
+options:
 ```python
 xr.set_options(lon_dim='longitude', lat_dim='latitude')
 df_dlon = d_dlon(f)
 df_dlat = d_dlat(f)
+```
+
+Installation
+------------
+
+Currently the only option for installing `xdiff` is from source:
+```
+$ git clone https://github.com/spencerkclark/xdiff.git
+$ cd xdiff
+$ pip install -e .
 ```
 
 References
