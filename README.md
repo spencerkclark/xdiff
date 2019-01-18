@@ -28,7 +28,7 @@ assumed.
 import numpy as np
 import xarray as xr
 
-from xdiff import EARTH_RADIUS, d_dlon, d_dlat, set_options
+import xdiff
 
 DLON = 1.
 lon = np.arange(0. + DLON / 2., 360., DLON)
@@ -40,24 +40,24 @@ lat = xr.DataArray(lat, [('lat', lat)])
 
 rad_lon = np.deg2rad(lon)
 rad_lat = np.deg2rad(lat)
-f = EARTH_RADIUS * np.cos(rad_lat) * np.sin(6 * rad_lon)
+f = xdiff.EARTH_RADIUS * np.cos(rad_lat) * np.sin(6 * rad_lon)
 
-df_dlon = d_dlon(f)
-df_dlat = d_dlat(f)
+df_dlon = xdiff.d_dlon(f)
+df_dlat = xdiff.d_dlat(f)
 ```
 
 Note that if the names for longitude and latitude were not the default ('lon'
 and 'lat'), we could specify those dimension names into the call to `d_dlon` or
 `d_dlat`: 
 ```python
-df_dlon = d_dlon(f, lon_dim='longitude', lat_dim='latitude')
-df_dlat = d_dlat(f, lon_dim='longitude', lat_dim='latitude')
+df_dlon = xdiff.d_dlon(f, lon_dim='longitude', lat_dim='latitude')
+df_dlat = xdiff.d_dlat(f, lon_dim='longitude', lat_dim='latitude')
 ```
 
 If you found yourself doing this a lot, you could reset the global default
 options:
 ```python
-set_options(lon_dim='longitude', lat_dim='latitude')
+xdiff.set_options(lon_dim='longitude', lat_dim='latitude')
 df_dlon = d_dlon(f)
 df_dlat = d_dlat(f)
 ```
