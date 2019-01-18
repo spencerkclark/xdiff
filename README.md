@@ -28,7 +28,7 @@ assumed.
 import numpy as np
 import xarray as xr
 
-from xdiff import EARTH_RADIUS, d_dlon, d_dlat
+from xdiff import EARTH_RADIUS, d_dlon, d_dlat, set_options
 
 DLON = 1.
 lon = np.arange(0. + DLON / 2., 360., DLON)
@@ -57,7 +57,7 @@ df_dlat = d_dlat(f, lon_dim='longitude', lat_dim='latitude')
 If you found yourself doing this a lot, you could reset the global default
 options:
 ```python
-xr.set_options(lon_dim='longitude', lat_dim='latitude')
+set_options(lon_dim='longitude', lat_dim='latitude')
 df_dlon = d_dlon(f)
 df_dlat = d_dlat(f)
 ```
