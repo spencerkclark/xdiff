@@ -163,7 +163,7 @@ def d_dlon(arr, lon_dim=None, lat_dim=None, radius=None):
                                                   lat_dim=lat_dim,
                                                   radius=radius)
 
-    arr = add_cyclic_points_lon(arr)
+    arr = add_cyclic_points_lon(arr, lon_dim=lon_dim)
 
     lon = np.deg2rad(arr[lon_dim])
     lat = np.deg2rad(arr[lat_dim])
@@ -220,7 +220,7 @@ def d_dlat(arr, divergence=False, lon_dim=None, lat_dim=None, radius=None):
                                                   lat_dim=lat_dim,
                                                   radius=radius)
 
-    arr = add_cyclic_points_lat(arr)
+    arr = add_cyclic_points_lat(arr, lon_dim=lon_dim, lat_dim=lat_dim)
 
     lat = np.deg2rad(arr[lat_dim])
     cos_lat = np.abs(np.cos(lat))  # The weighting is positive-definite
